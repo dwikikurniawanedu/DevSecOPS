@@ -6,7 +6,7 @@ RUN pip install --no-cache-dir --user -r requirements.txt
 
 # STAGE 2: Runtime stage - image final yang minimal
 FROM python:3.12-alpine AS runtime
-RUN apk upgrade --no-cache && pip install --no-cache-dir --upgrade pip setuptools
+RUN apk upgrade --no-cache && pip install --no-cache-dir --upgrade pip setuptools setuptools
 RUN addgroup -g 1001 -S appgroup && \
     adduser -u 1001 -S appuser -G appgroup
 WORKDIR /app
@@ -17,5 +17,6 @@ USER appuser
 EXPOSE 8080
 ENTRYPOINT ["python3"]
 CMD ["app.py"]
+
 
 
